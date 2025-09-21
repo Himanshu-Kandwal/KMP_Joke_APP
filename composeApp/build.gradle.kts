@@ -7,6 +7,9 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+
+    alias(libs.plugins.serialization)
+
 }
 
 kotlin {
@@ -34,6 +37,15 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             //ktor android
             implementation(libs.ktor.client.okhttp)
+            //serialisation
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            //Koin
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.koin.compose.viewModel)
+
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -47,6 +59,8 @@ kotlin {
 
             //ktor core
             implementation(libs.ktor.client.core)
+            //Koin
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
