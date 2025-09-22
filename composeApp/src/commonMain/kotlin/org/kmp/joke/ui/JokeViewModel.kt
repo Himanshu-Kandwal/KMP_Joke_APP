@@ -31,7 +31,7 @@ class JokeViewModel(
                 getJokesUseCase()
                     .map { result ->
                         when (result) {
-                            is Result.Success -> JokeUiState.Success(result.data)
+                            is Result.Success -> JokeUiState.Success(result.data.joke)
                             is Result.Failure -> JokeUiState.Error(result.errorMessage)
                             is Result.Loading -> JokeUiState.Loading
                         }
