@@ -13,17 +13,18 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.kmp.joke.ui.JokeUiState
 import org.kmp.joke.ui.JokeViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun JokeScreen(viewModel: JokeViewModel = TODO()) {
+fun JokeScreen(viewModel: JokeViewModel = koinViewModel<JokeViewModel>()) {
     val jokeState by viewModel.uiState.collectAsStateWithLifecycle()
     JokeScreenContent(jokeState = jokeState, onReload = { viewModel.reloadJoke() })
 }
