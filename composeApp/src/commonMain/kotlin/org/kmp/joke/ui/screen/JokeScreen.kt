@@ -1,11 +1,17 @@
 package org.kmp.joke.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -53,16 +59,33 @@ private fun JokeScreenContent(jokeState: JokeUiState, onReload: () -> Unit = {})
             if (isLoading) {
                 CircularProgressIndicator()
             } else {
-                Text(
-                    text = jokeText,
-                    color = textColor
-                )
-                Button(
-                    onClick = onReload,
-                    modifier = Modifier.padding(top = 16.dp),
-                    enabled = !isLoading
+                ElevatedCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(horizontal = 16.dp),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = Color.DarkGray.copy(0.2f)
+                    )
                 ) {
-                    Text("Reload")
+                    Box(modifier = Modifier.padding(16.dp)) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = jokeText,
+                                color = textColor
+                            )
+                            Button(
+                                onClick = onReload,
+                                modifier = Modifier.padding(top = 16.dp),
+                                enabled = !isLoading
+                            ) {
+                                Text("Reload")
+                            }
+                        }
+                    }
                 }
             }
         }
