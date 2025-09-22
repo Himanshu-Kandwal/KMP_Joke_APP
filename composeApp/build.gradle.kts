@@ -42,7 +42,6 @@ kotlin {
             //Koin
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
-            implementation(libs.koin.compose.viewModel)
 
 
         }
@@ -65,6 +64,9 @@ kotlin {
 
             //Koin
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewModel)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
