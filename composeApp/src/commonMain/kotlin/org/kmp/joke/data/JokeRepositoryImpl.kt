@@ -10,7 +10,7 @@ import org.kmp.joke.domain.Joke
 import org.kmp.joke.domain.JokeRepository
 import org.kmp.joke.domain.Result
 
-class JokeRepository(
+class JokeRepositoryImpl(
     val jokeRemoteDataSource: JokeRemoteDataSource,
     val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : JokeRepository {
