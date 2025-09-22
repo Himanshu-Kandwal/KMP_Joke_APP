@@ -35,11 +35,10 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
             //ktor android
             implementation(libs.ktor.client.okhttp)
-            //serialisation
-            implementation(libs.ktor.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
+
             //Koin
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
@@ -59,6 +58,11 @@ kotlin {
 
             //ktor core
             implementation(libs.ktor.client.core)
+
+            //serialisation
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
             //Koin
             implementation(libs.koin.core)
         }
