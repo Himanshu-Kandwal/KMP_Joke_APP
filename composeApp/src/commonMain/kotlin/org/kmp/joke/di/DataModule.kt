@@ -1,15 +1,26 @@
 package org.kmp.joke.di
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import org.kmp.joke.Constants
+import org.kmp.joke.data.JokeRemoteDataSource
 import org.kmp.joke.data.JokeRemoteDataSourceImpl
 import org.kmp.joke.data.JokeRepositoryImpl
 import org.kmp.joke.domain.JokeRepository
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val dataModule = module {
-    singleOf(::JokeRepositoryImpl) {
-        bind<JokeRepository>()
+
+    single(named("ioDispatcher")) { Dispatchers.IO }
+
+    single<JokeRepository> {
+        JokeRepositoryImpl(get(), get(named("ioDispatcher")))
     }
-    singleOf(::JokeRemoteDataSourceImpl)
+
+    single<JokeRemoteDataSource> {
+        JokeRemoteDataSourceImpl(
+            httpClient = get(), baseUrl = Constants.URL
+        )
+    }
 }
