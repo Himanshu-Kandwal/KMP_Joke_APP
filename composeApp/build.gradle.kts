@@ -57,6 +57,7 @@ kotlin {
 
             //ktor core
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
 
             //serialisation
             implementation(libs.ktor.content.negotiation)
@@ -100,6 +101,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
